@@ -1,6 +1,7 @@
-import { Route, Routes, NavLink } from 'react-router-dom';
-import Trending from './Trending';
-import ChoosenMovie from './ChoosenMovie';
+import { Route, Routes, NavLink, Outlet } from 'react-router-dom';
+import Trending from './Trending/Trending';
+import ChoosenMovie from './ChoosenMovie/ChoosenMovie';
+import Cast from './ChoosenMovie/Cast';
 
 export const App = () => {
   return (
@@ -11,8 +12,19 @@ export const App = () => {
       </nav>
       <Routes>
         <Route path="/home" element={<Trending />} />
-        <Route path="/movies" element={<h1> AT MOVIE PAGE</h1>} />
-        <Route path="/movies/:movieId" element={<ChoosenMovie />} />
+        <Route
+          path="/movies"
+          element={
+            <div>
+              <h1> AT MOVIE PAGE</h1>
+              <Outlet />
+            </div>
+          }
+        >
+          <Route path=":movieId" element={<ChoosenMovie />}>
+            <Route path="cast" element={<Cast />} />
+          </Route>
+        </Route>
         <Route path="*" element={<h1> PAGE NOT FOUND</h1>} />
       </Routes>
     </div>

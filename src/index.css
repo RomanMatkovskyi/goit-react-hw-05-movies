@@ -44,3 +44,8 @@ code {
 .choosenbookimg {
   width: 300px;
 }
+
+.ChoosenMovie {
+  display: flex;
+  gap: 30px;
+}
