@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { options } from '../verification/verification';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);

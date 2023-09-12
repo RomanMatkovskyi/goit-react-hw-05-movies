@@ -5,14 +5,6 @@ import { Link } from 'react-router-dom';
 const Trending = () => {
   const [trends, setTrends] = useState([]);
   useEffect(() => {
-    // let params = new URLSearchParams({
-    //   key: '37799813-d6baa13d55c299777f9561755',
-    //   q: search,
-    //   orientation: 'horizontal',
-    //   page: curentPage,
-    //   per_page: 15,
-    // });
-    // axios.get(`${params}`).then().catch();
     const options = {
       method: 'GET',
       headers: {
@@ -29,7 +21,6 @@ const Trending = () => {
       .then(response => response.json())
       .then(response => {
         setTrends(response.results);
-        // console.log(response);
       })
       .catch(err => console.error(err));
   }, []);

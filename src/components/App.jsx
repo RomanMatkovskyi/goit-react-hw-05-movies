@@ -1,31 +1,30 @@
 import { Route, Routes, NavLink, Outlet } from 'react-router-dom';
 import Trending from './Trending/Trending';
 import ChoosenMovie from './ChoosenMovie/ChoosenMovie';
+import Reviews from './ChoosenMovie/Reviews';
 import Cast from './ChoosenMovie/Cast';
+import Movies from 'pages/Movies';
+import Layout from './Layout/Layout';
 
 export const App = () => {
   return (
     <div className="container">
-      <nav>
-        <NavLink to="/home">Home</NavLink>
-        <NavLink to="/movies">Movies</NavLink>
-      </nav>
       <Routes>
-        <Route path="/home" element={<Trending />} />
-        <Route
-          path="/movies"
-          element={
-            <div>
-              <h1> AT MOVIE PAGE</h1>
-              <Outlet />
-            </div>
-          }
-        >
-          <Route path=":movieId" element={<ChoosenMovie />}>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Trending />} />
+          <Route
+            path="movies"
+            element={
+              <div>
+                <Movies />
+              </div>
+            }
+          />
+          <Route path="movies/:movieId" element={<ChoosenMovie />}>
             <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
-        <Route path="*" element={<h1> PAGE NOT FOUND</h1>} />
       </Routes>
     </div>
   );

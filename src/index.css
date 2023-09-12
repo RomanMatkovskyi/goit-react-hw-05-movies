@@ -49,3 +49,8 @@ code {
   display: flex;
   gap: 30px;
 }
+
+.searchedMovie {
+  height: 250px;
+  width: auto;
+}

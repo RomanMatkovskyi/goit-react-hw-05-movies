@@ -20,7 +20,7 @@ const ChoosenMovie = () => {
       .then(response => response.json())
       .then(response => {
         setMovieInfo(response);
-        console.log(response);
+        // console.log(response);
       })
       .catch(err => console.error(err));
   }, []);
@@ -55,7 +55,7 @@ const ChoosenMovie = () => {
             <Link to="cast">Cast</Link>
           </li>
           <li>
-            <Link>Reviews</Link>
+            <Link to="reviews">Reviews</Link>
           </li>
         </ul>
         <Outlet />
