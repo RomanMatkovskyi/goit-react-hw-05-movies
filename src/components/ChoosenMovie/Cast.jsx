@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { options } from '../verification/verification';
 import { useParams } from 'react-router-dom';
+import { CastList } from './Cast.styled';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -18,7 +19,7 @@ const Cast = () => {
       .catch(err => console.error(err));
   }, []);
   return (
-    <ul>
+    <CastList>
       {cast.length !== 0 &&
         cast.map(actor => {
           return (
@@ -36,7 +37,7 @@ const Cast = () => {
             </li>
           );
         })}
-    </ul>
+    </CastList>
   );
 };
 

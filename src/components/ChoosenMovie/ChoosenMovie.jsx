@@ -1,9 +1,20 @@
-import { useState, useEffect } from 'react';
-import { Link, useParams, Outlet } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
+import {
+  Score,
+  MovieTitle,
+  MovieImage,
+  Container,
+  Overwiew,
+  Description,
+  GenresList,
+} from './ChoosenMovie.styled';
 
 const ChoosenMovie = () => {
   const [movieInfo, setMovieInfo] = useState({});
   const { movieId } = useParams();
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
   useEffect(() => {
     const options = {
       method: 'GET',
@@ -25,10 +36,10 @@ const ChoosenMovie = () => {
       .catch(err => console.error(err));
   }, []);
   return (
-    <div className="ChoosenMovie">
+    <Container>
       <div>
-        <h2>{movieInfo.original_title}</h2>
-        <img
+        <MovieTitle>{movieInfo.original_title}</MovieTitle>
+        <MovieImage
           className="choosenbookimg"
           src={
             movieInfo.poster_path &&
@@ -36,31 +47,32 @@ const ChoosenMovie = () => {
           }
           alt={movieInfo.title ? movieInfo.title : movieInfo.name}
         />
+        <Link to={backLinkLocationRef.current}>Back to search page</Link>
       </div>
       <div>
-        <p>Users score: {movieInfo.vote_average}</p>
-        <h3>Overview</h3>
-        <p>{movieInfo.overview}</p>
+        <Score>Users score: {movieInfo.vote_average}</Score>
+        <Overwiew>Overview</Overwiew>
+        <Description>{movieInfo.overview}</Description>
         <h3>Genres</h3>
         {movieInfo.genres && (
-          <ul>
+          <GenresList>
             {movieInfo.genres.map(genre => (
               <li key={genre.id}>{genre.name}</li>
             ))}
-          </ul>
+          </GenresList>
         )}
         <h3>Additional information</h3>
-        <ul>
+        <GenresList>
           <li>
             <Link to="cast">Cast</Link>
           </li>
           <li>
             <Link to="reviews">Reviews</Link>
           </li>
-        </ul>
+        </GenresList>
         <Outlet />
       </div>
-    </div>
+    </Container>
   );
 };
 

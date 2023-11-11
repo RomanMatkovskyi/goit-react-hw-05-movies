@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { options } from 'components/verification/verification';
 
 const Movies = () => {
+  let render = useRef(true);
+
   const [movie, setMovie] = useState('');
   const [status, setStatus] = useState(false);
   const [query, setQuery] = useState('');
@@ -24,7 +26,7 @@ const Movies = () => {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
+      `https://api.themoviedb.org/3/search/movie?query=${productName}&include_adult=false&language=en-US&page=1`,
       options
     )
       .then(response => response.json())
@@ -53,7 +55,10 @@ const Movies = () => {
           {listMovies.map(movie => {
             return (
               <li key={movie.id}>
-                <Link to={`/movies/${movie.id}`}>
+                <Link
+                  to={`/movies/${movie.id}`}
+                  state={{ from: `/movies?${searchParams}` }}
+                >
                   <h3>{movie.title}</h3>
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}

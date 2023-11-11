@@ -23,7 +23,7 @@ const Reviews = () => {
         <p>We dont have any reviews for this movie.</p>
       ) : (
         <>
-          <h3>We are at reviews</h3>
+          <h3>Reviews</h3>
           {reviews.map(review => {
             return (
               <div key={review.author}>
