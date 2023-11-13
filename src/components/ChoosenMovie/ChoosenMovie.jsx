@@ -15,6 +15,7 @@ const ChoosenMovie = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
+
   useEffect(() => {
     const options = {
       method: 'GET',
@@ -31,7 +32,6 @@ const ChoosenMovie = () => {
       .then(response => response.json())
       .then(response => {
         setMovieInfo(response);
-        // console.log(response);
       })
       .catch(err => console.error(err));
   }, []);

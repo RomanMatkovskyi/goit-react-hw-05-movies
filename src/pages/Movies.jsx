@@ -7,7 +7,6 @@ const Movies = () => {
   let render = useRef(true);
 
   const [movie, setMovie] = useState('');
-  const [status, setStatus] = useState(false);
   const [query, setQuery] = useState('');
   const [listMovies, setListMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -31,7 +30,6 @@ const Movies = () => {
     )
       .then(response => response.json())
       .then(data => {
-        console.log(data.results);
         setListMovies(data.results);
       })
       .catch(err => console.error(err));

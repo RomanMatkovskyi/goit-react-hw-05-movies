@@ -13,7 +13,6 @@ const Reviews = () => {
       .then(response => response.json())
       .then(response => {
         setReviews(response.results);
-        console.log(response);
       })
       .catch(err => console.error(err));
   }, []);

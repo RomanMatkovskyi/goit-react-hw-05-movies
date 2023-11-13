@@ -14,7 +14,6 @@ const Cast = () => {
       .then(response => response.json())
       .then(response => {
         setCast(response.cast.splice(0, 10));
-        console.log(response.cast.splice(0, 10));
       })
       .catch(err => console.error(err));
   }, []);
