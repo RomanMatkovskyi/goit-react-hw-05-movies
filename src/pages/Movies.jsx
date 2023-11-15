@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { options } from 'components/verification/verification';
 
 const Movies = () => {
-  let render = useRef(true);
-
   const [movie, setMovie] = useState('');
   const [query, setQuery] = useState('');
   const [listMovies, setListMovies] = useState([]);
@@ -33,7 +31,7 @@ const Movies = () => {
         setListMovies(data.results);
       })
       .catch(err => console.error(err));
-  }, [movie]);
+  }, [movie, productName]);
 
   return (
     <>

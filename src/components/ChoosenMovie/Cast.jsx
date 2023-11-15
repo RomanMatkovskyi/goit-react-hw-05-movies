@@ -16,7 +16,7 @@ const Cast = () => {
         setCast(response.cast.splice(0, 10));
       })
       .catch(err => console.error(err));
-  }, []);
+  }, [movieId]);
   return (
     <CastList>
       {cast.length !== 0 &&

@@ -34,7 +34,7 @@ const ChoosenMovie = () => {
         setMovieInfo(response);
       })
       .catch(err => console.error(err));
-  }, []);
+  }, [movieId]);
   return (
     <Container>
       <div>
