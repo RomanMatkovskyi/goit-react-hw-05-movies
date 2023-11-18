@@ -2,6 +2,18 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { options } from 'components/verification/verification';
+import {
+  MovieSearch,
+  SearchBtn,
+  MovieImage,
+  MovieList,
+  MovieItem,
+  StyledLink,
+  MovieTitle,
+} from 'pages/Movies.styled';
+
+const defaultImg =
+  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
 const Movies = () => {
   const [movie, setMovie] = useState('');
@@ -31,12 +43,11 @@ const Movies = () => {
         setListMovies(data.results);
       })
       .catch(err => console.error(err));
-  }, [movie, productName]);
-
+  }, [movie]);
   return (
     <>
       <form onSubmit={SearchedMovies}>
-        <input
+        <MovieSearch
           type="text"
           value={query}
           onChange={e => {
@@ -44,28 +55,34 @@ const Movies = () => {
             setQuery(e.target.value);
           }}
         />
-        <button type="submit">search</button>
+        <SearchBtn type="submit">search</SearchBtn>
       </form>
       {listMovies.length !== 0 && (
-        <ul>
+        <MovieList>
           {listMovies.map(movie => {
             return (
-              <li key={movie.id}>
-                <Link
+              <MovieItem key={movie.id}>
+                <StyledLink
                   to={`/movies/${movie.id}`}
                   state={{ from: `/movies?${searchParams}` }}
                 >
-                  <h3>{movie.title}</h3>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                    alt=""
+                  <MovieTitle>{movie.title}</MovieTitle>
+                  <MovieImage
+                    src={
+                      movie.backdrop_path
+                        ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
+                        : defaultImg
+                    }
+                    alt="poster"
+                    width="450"
+                    height="250"
                     className="searchedMovie"
                   />
-                </Link>
-              </li>
+                </StyledLink>
+              </MovieItem>
             );
           })}
-        </ul>
+        </MovieList>
       )}
     </>
   );
