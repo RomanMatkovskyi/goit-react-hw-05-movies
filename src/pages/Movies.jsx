@@ -9,7 +9,7 @@ import {
   MovieItem,
   StyledLink,
   MovieTitle,
-} from 'pages/Movies.styled';
+} from './Movies.styled';
 
 const defaultImg =
   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
@@ -42,7 +42,8 @@ const Movies = () => {
         setListMovies(data.results);
       })
       .catch(err => console.error(err));
-  }, [movie, productName]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [movie]);
   return (
     <>
       <form onSubmit={SearchedMovies}>
