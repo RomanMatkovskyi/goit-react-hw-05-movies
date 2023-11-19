@@ -42,7 +42,7 @@ const Movies = () => {
         setListMovies(data.results);
       })
       .catch(err => console.error(err));
-  }, [movie]);
+  }, [movie, productName]);
   return (
     <>
       <form onSubmit={SearchedMovies}>
