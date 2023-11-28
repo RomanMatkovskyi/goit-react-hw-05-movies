@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { options } from 'components/verification/verification';
+import { SearchMovie } from 'services/services-api';
+
 import {
-  MovieSearch,
-  SearchBtn,
   MovieImage,
   MovieList,
   MovieItem,
@@ -11,52 +10,31 @@ import {
   MovieTitle,
 } from './Movies.styled';
 
+import SearchBox from 'components/SearchBox/SearchBox';
+
 const defaultImg =
   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
 const Movies = () => {
   const [movie, setMovie] = useState('');
-  const [query, setQuery] = useState('');
   const [listMovies, setListMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+
   const productName = searchParams.get('query') ?? '';
 
-  const SearchedMovies = event => {
-    event.preventDefault();
-    setMovie(productName);
-    setQuery('');
-  };
-
-  const updateQueryString = name => {
-    const nextParams = name !== '' ? { query: name } : {};
-    setSearchParams(nextParams);
-  };
-
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${productName}&include_adult=false&language=en-US&page=1`,
-      options
-    )
-      .then(response => response.json())
+    SearchMovie(productName, 'search_movies')
       .then(data => {
         setListMovies(data.results);
       })
-      .catch(err => console.error(err));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [movie]);
+      .catch(error => {
+        console.error('Помилка отримання даних про фільм:', error);
+      });
+  }, [movie, productName]);
+
   return (
     <>
-      <form onSubmit={SearchedMovies}>
-        <MovieSearch
-          type="text"
-          value={query}
-          onChange={e => {
-            updateQueryString(e.target.value);
-            setQuery(e.target.value);
-          }}
-        />
-        <SearchBtn type="submit">search</SearchBtn>
-      </form>
+      <SearchBox />
       {listMovies.length !== 0 && (
         <MovieList>
           {listMovies.map(movie => {

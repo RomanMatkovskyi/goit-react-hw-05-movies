@@ -1,27 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { SearchMovie } from 'services/services-api';
 
 const Trending = () => {
   const [trends, setTrends] = useState([]);
+
   useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZDVhMmVmOTBkZWY1YzMzZDRhMzFkMGRhMDViMDE1MCIsInN1YiI6IjY0ZjBiYjU5Y2FhNTA4MDEwYWU2YWUyMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.68fXrEUL_FZnMg6SyMTGJwfTB01TSdh9bAAu1u2Pz14',
-      },
+    const fetchTrendingMovies = async () => {
+      try {
+        const data = await SearchMovie(null, 'trending_movies');
+        setTrends(data.results);
+      } catch (error) {
+        console.error('Error fetching trending movies:', error);
+      }
     };
 
-    fetch(
-      'https://api.themoviedb.org/3/trending/all/day?language=en-US',
-      options
-    )
-      .then(response => response.json())
-      .then(response => {
-        setTrends(response.results);
-      })
-      .catch(err => console.error(err));
+    fetchTrendingMovies();
   }, []);
   return (
     <>

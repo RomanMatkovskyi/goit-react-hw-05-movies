@@ -10,6 +10,8 @@ import {
   GenresList,
 } from './ChoosenMovie.styled';
 
+import { SearchMovie } from 'services/services-api';
+
 const ChoosenMovie = () => {
   const [movieInfo, setMovieInfo] = useState({});
   const { movieId } = useParams();
@@ -17,24 +19,15 @@ const ChoosenMovie = () => {
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZDVhMmVmOTBkZWY1YzMzZDRhMzFkMGRhMDViMDE1MCIsInN1YiI6IjY0ZjBiYjU5Y2FhNTA4MDEwYWU2YWUyMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.68fXrEUL_FZnMg6SyMTGJwfTB01TSdh9bAAu1u2Pz14',
-      },
-    };
-    fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
-      options
-    )
-      .then(response => response.json())
-      .then(response => {
-        setMovieInfo(response);
+    SearchMovie(movieId, 'movie')
+      .then(data => {
+        setMovieInfo(data);
       })
-      .catch(err => console.error(err));
+      .catch(error => {
+        console.error('Помилка отримання даних про фільм:', error);
+      });
   }, [movieId]);
+
   return (
     <Container>
       <div>
