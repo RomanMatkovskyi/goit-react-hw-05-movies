@@ -8,6 +8,7 @@ import {
   MovieItem,
   StyledLink,
   MovieTitle,
+  FailedSearch,
 } from './Movies.styled';
 
 import SearchBox from 'components/SearchBox/SearchBox';
@@ -16,9 +17,8 @@ const defaultImg =
   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
 const Movies = () => {
-  const [movie, setMovie] = useState('');
   const [listMovies, setListMovies] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const productName = searchParams.get('query') ?? '';
 
@@ -30,7 +30,7 @@ const Movies = () => {
       .catch(error => {
         console.error('Помилка отримання даних про фільм:', error);
       });
-  }, [movie, productName]);
+  }, [productName]);
 
   return (
     <>
@@ -61,6 +61,11 @@ const Movies = () => {
             );
           })}
         </MovieList>
+      )}
+      {listMovies.length === 0 && searchParams.get('query') && (
+        <FailedSearch>
+          We are sorry, but we couldn't find the movie you were looking for🥺
+        </FailedSearch>
       )}
     </>
   );

@@ -52,3 +52,8 @@ export const MovieImage = styled.img`
   height: 250px;
   display: block;
 `;
+
+export const FailedSearch = styled.p`
+margin-top: 25px;
+font-weight: 500;
+`

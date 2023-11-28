@@ -1,19 +1,19 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 
-const Trending = lazy(() => import('./Trending/Trending'));
+const Home = lazy(() => import('../pages/Home'));
 const ChoosenMovie = lazy(() => import('../pages/ChoosenMovie'));
 const Reviews = lazy(() => import('./ChoosenMovie/Reviews'));
 const Cast = lazy(() => import('./ChoosenMovie/Cast'));
 const Movies = lazy(() => import('pages/Movies'));
-const Layout = lazy(() => import('../pages/Layout'));
+const Layout = lazy(() => import('./Layout/Layout'));
 
 export const App = () => {
   return (
     <div className="container">
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Trending />} />
+          <Route index element={<Home />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<ChoosenMovie />}>
             <Route path="cast" element={<Cast />} />

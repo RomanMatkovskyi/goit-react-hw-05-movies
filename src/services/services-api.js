@@ -32,10 +32,6 @@ export const SearchMovie = async (film, type) => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    // if (type === 'trending_movies') {
-    //   return response;
-    // }
-
     const data = await response.json();
     return data;
   } catch (error) {
