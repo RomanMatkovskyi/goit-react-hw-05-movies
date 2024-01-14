@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { SearchMovie } from 'services/services-api';
 import {
   TrendingTitle,
