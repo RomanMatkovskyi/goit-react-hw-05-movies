@@ -21,6 +21,7 @@ img {
   width: 100%;
 }
 body {
+  background-color: #383950;
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
@@ -38,20 +39,6 @@ code {
   padding: 0 10px;
   width: 100%;
   max-width: 1440px;
-}
-
-.trendList {
-  padding-left: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-  align-items: last baseline;
-}
-
-.trendItem {
-  width: 250px;
 }
 
 .choosenbookimg {

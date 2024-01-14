@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const Header = styled.header`
-  padding: 15px 10px;
-  background-color: #ffe3001a;
+  padding: 20px 20px;
+  background-color: #15141f;
+  border-radius: 25px;
 `;
 
 export const Navigation = styled.nav`
@@ -10,16 +11,22 @@ export const Navigation = styled.nav`
   gap: 20px;
 
   > a {
-    color: black;
+    color: #e2e2e2;
+    font-family: Lato;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.385px;
     text-decoration: none;
     transition: color 0.3s ease;
   }
 
   a:hover {
-    color: red;
+    color: #fb5123;
   }
 
   .active {
-    color: blue;
+    color: #fb5123;
   }
 `;

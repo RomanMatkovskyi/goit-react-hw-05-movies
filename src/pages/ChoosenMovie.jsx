@@ -4,8 +4,10 @@ import {
   Score,
   MovieTitle,
   MovieImage,
+  BackButton,
   Container,
-  Overwiew,
+  FilmDescr,
+  FilmDescrTitle,
   Description,
   GenresList,
 } from './ChoosenMovie.styled';
@@ -40,13 +42,15 @@ const ChoosenMovie = () => {
           }
           alt={movieInfo.title ? movieInfo.title : movieInfo.name}
         />
-        <Link to={backLinkLocationRef.current}>Back to search page</Link>
+        <BackButton to={backLinkLocationRef.current}>
+          Back to search page
+        </BackButton>
       </div>
-      <div>
+      <FilmDescr>
         <Score>Users score: {movieInfo.vote_average}</Score>
-        <Overwiew>Overview</Overwiew>
+        <FilmDescrTitle>Overview</FilmDescrTitle>
         <Description>{movieInfo.overview}</Description>
-        <h3>Genres</h3>
+        <FilmDescrTitle>Genres</FilmDescrTitle>
         {movieInfo.genres && (
           <GenresList>
             {movieInfo.genres.map(genre => (
@@ -54,7 +58,7 @@ const ChoosenMovie = () => {
             ))}
           </GenresList>
         )}
-        <h3>Additional information</h3>
+        <FilmDescrTitle>Additional information</FilmDescrTitle>
         <GenresList>
           <li>
             <Link to="cast">Cast</Link>
@@ -64,7 +68,7 @@ const ChoosenMovie = () => {
           </li>
         </GenresList>
         <Outlet />
-      </div>
+      </FilmDescr>
     </Container>
   );
 };

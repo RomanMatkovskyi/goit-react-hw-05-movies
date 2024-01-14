@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { options } from 'components/verification/verification';
+import {
+  ReviewsTitle,
+  AuthorName,
+  ReviewText,
+  NoReviews,
+} from './Reviews.styled';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -19,15 +25,15 @@ const Reviews = () => {
   return (
     <>
       {reviews.length === 0 ? (
-        <p>We dont have any reviews for this movie.</p>
+        <NoReviews>We dont have any reviews for this movie.</NoReviews>
       ) : (
         <>
-          <h3>Reviews</h3>
+          <ReviewsTitle>Reviews</ReviewsTitle>
           {reviews.map(review => {
             return (
               <div key={review.author}>
-                <h3>{review.author}</h3>
-                <p>{review.content}</p>
+                <AuthorName>{review.author}</AuthorName>
+                <ReviewText>{review.content}</ReviewText>
               </div>
             );
           })}

@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
 import { options } from '../verification/verification';
 import { useParams } from 'react-router-dom';
-import { CastList } from './Cast.styled';
+import {
+  CastList,
+  ActorFoto,
+  CastItem,
+  ActorName,
+  ActorRole,
+} from './Cast.styled';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -22,18 +28,18 @@ const Cast = () => {
       {cast.length !== 0 &&
         cast.map(actor => {
           return (
-            <li key={actor.id}>
-              <img
+            <CastItem key={actor.id}>
+              <ActorFoto
                 src={
                   actor.profile_path &&
                   `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
                 }
-                alt=""
-                style={{ width: '150px' }}
+                alt="photo not available"
+                width={150}
               />
-              <h3>{actor.name}</h3>
-              <p>Character: {actor.character}</p>
-            </li>
+              <ActorName>{actor.name}</ActorName>
+              <ActorRole>Character: {actor.character}</ActorRole>
+            </CastItem>
           );
         })}
     </CastList>

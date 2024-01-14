@@ -20,17 +20,14 @@ export const SearchBtn = styled.button`
 `;
 
 export const MovieList = styled.ul`
-  width: 960px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 15px;
   display: flex;
+  justify-content: right;
   align-items: end;
   flex-wrap: wrap;
-  gap: 30px;
-`;
-
-export const MovieItem = styled.li`
-  width: calc((100% - 60) / 2);
+  gap: 20px;
 `;
 
 export const StyledLink = styled(Link)`
@@ -39,21 +36,45 @@ export const StyledLink = styled(Link)`
 `;
 
 export const MovieTitle = styled.h3`
-  width: 450px;
-  margin-bottom: 8px;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1.2;
-  text-decoration: none;
+  max-width: 400px;
+  color: #fff;
+  font-family: Lato;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+  margin-bottom: 12px;
+  transition: color 0.3s ease;
+`;
+
+export const MovieItem = styled.li`
+  width: calc((100% - 60px) / 3);
+
+  &:hover ${MovieTitle} {
+    color: #fb5123;
+  }
 `;
 
 export const MovieImage = styled.img`
-  width: 450px;
+  max-width: 400px;
   height: 250px;
   display: block;
+  border-radius: 20px;
 `;
 
 export const FailedSearch = styled.p`
-margin-top: 25px;
-font-weight: 500;
-`
+  margin-top: 25px;
+  text-align: center;
+  color: #fff;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.24px;
+`;
+
+export const SearchMovieSection = styled.section`
+  padding-bottom: 40px;
+`;

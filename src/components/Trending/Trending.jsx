@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SearchMovie } from 'services/services-api';
+import {
+  TrendingTitle,
+  TrendingList,
+  TrendItem,
+  MovieLink,
+  MovieTitle,
+  MovieImg,
+} from './Trending.styled';
 
 const Trending = () => {
   const [trends, setTrends] = useState([]);
@@ -19,22 +27,24 @@ const Trending = () => {
   }, []);
   return (
     <>
-      <h1>Trending today</h1>
-      <ul className="trendList">
+      <TrendingTitle>Trending today</TrendingTitle>
+      <TrendingList>
         {trends.map(trend => {
           return (
-            <li className="trendItem" key={trend.id} id={trend.id}>
-              <Link to={`/movies/${trend.id}`}>
-                <h2>{trend.title ? trend.title : trend.name}</h2>
-                <img
+            <TrendItem key={trend.id} id={trend.id}>
+              <MovieLink to={`/movies/${trend.id}`}>
+                <MovieTitle>
+                  {trend.title ? trend.title : trend.name}
+                </MovieTitle>
+                <MovieImg
                   src={`https://image.tmdb.org/t/p/w500${trend.poster_path}`}
                   alt={trend.title ? trend.title : trend.name}
                 />
-              </Link>
-            </li>
+              </MovieLink>
+            </TrendItem>
           );
         })}
-      </ul>
+      </TrendingList>
     </>
   );
 };

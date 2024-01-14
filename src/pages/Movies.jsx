@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { SearchMovie } from 'services/services-api';
 
 import {
+  SearchMovieSection,
   MovieImage,
   MovieList,
   MovieItem,
@@ -33,7 +34,7 @@ const Movies = () => {
   }, [productName]);
 
   return (
-    <>
+    <SearchMovieSection>
       <SearchBox />
       {listMovies.length !== 0 && (
         <MovieList>
@@ -52,7 +53,7 @@ const Movies = () => {
                         : defaultImg
                     }
                     alt="poster"
-                    width="450"
+                    width="400"
                     height="250"
                     className="searchedMovie"
                   />
@@ -67,7 +68,7 @@ const Movies = () => {
           We are sorry, but we couldn't find the movie you were looking for🥺
         </FailedSearch>
       )}
-    </>
+    </SearchMovieSection>
   );
 };
 
