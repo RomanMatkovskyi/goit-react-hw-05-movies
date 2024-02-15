@@ -57,7 +57,7 @@ export const MovieItem = styled.li`
 `;
 
 export const MovieImage = styled.img`
-  max-width: 400px;
+  width: 400px;
   height: 250px;
   display: block;
   border-radius: 20px;
